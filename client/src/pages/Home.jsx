@@ -5,7 +5,7 @@ const Home = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    axiosInstance.get('/test')
+    axiosInstance.get('/')
       .then(res => setMessage(res.data.message))
       .catch(err => console.log(err));
   }, []);

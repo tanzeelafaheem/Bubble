@@ -30,7 +30,7 @@ app.use(express.json());
 
 app.use('/api/user',userRouter)
 app.use('/api/message',messageRouter)
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
   res.json({ message: '🫧 Bubble server is working!' });
 });
 
