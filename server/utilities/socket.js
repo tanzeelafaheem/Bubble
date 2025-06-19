@@ -1,4 +1,4 @@
-import messageModel from './models/messageModel.js'; // Adjust path as needed
+import messageModel from '../models/messageModel.js'; 
 
 let onlineUsers = new Map();
 
