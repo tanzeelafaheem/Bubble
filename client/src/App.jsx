@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import Home from './pages/Home'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Home from './pages/Home';
 
 function App() {
-
-
   return (
-    <>
-  <h1 className='text-blue-300 text-6xl'>My React App</h1>
-   <Home/>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
+  );
 }
 
 export default App
