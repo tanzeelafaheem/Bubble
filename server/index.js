@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import http from 'http';
 import connectDb from './config/mongodb.js';
 import userRouter from './routes/userRoute.js'
+import messageRouter from './routes/messageRoute.js';
 
 dotenv.config();
 
@@ -16,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/user',userRouter)
+app.use('/api/message',messageRouter)
 app.get('/', (req, res) => {
   res.json({ message: '🫧 Bubble server is working!' });
 });

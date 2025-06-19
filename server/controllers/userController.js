@@ -77,5 +77,60 @@ const searchUser = async (req, res) => {
   }
 };
 
+const sendFriendRequest = async (req, res) => {
+  const { fromUserId, toUserId } = req.body;
+  try {
+    const toUser = await userModel.findById(toUserId);
+    if (!toUser.friendRequests.includes(fromUserId)) {
+      toUser.friendRequests.push(fromUserId);
+      await toUser.save();
+    }
+    res.status(200).json({ success: true, msg: 'Request sent' });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
 
-export {addUser,loginUser,searchUser};
+const acceptFriendRequest = async (req, res) => {
+  const { fromUserId, toUserId } = req.body;
+  try {
+    const toUser = await userModel.findById(toUserId);
+    const fromUser = await userModel.findById(fromUserId);
+
+    toUser.friends.push(fromUserId);
+    fromUser.friends.push(toUserId);
+
+    toUser.friendRequests = toUser.friendRequests.filter(id => id.toString() !== fromUserId);
+    
+    await toUser.save();
+    await fromUser.save();
+
+    res.status(200).json({ success: true, msg: 'Friend added' });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+const getFriendRequests = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.params.userId).populate("friendRequests", "username profilePic");
+    res.status(200).json({ success: true, friendRequests: user.friendRequests });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+const getFriends = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.params.userId).populate('friends', 'username profilePic');
+    res.status(200).json({ success: true, friends: user.friends });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+
+
+
+export {addUser,loginUser,searchUser,sendFriendRequest,
+        acceptFriendRequest,getFriendRequests,getFriends};
