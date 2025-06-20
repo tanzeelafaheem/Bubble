@@ -13,14 +13,27 @@ const Home = () => {
       .catch(err => console.log(err));
   }, []);
 
-   return (
+  return (
     <>
-    <Navbar/>
-    <Sidebar/>
-    <ChatBox/>
-      <h1 className="text-2xl p-5">{message}</h1>
+     <div className="flex flex-col h-screen">
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Main section with sidebar and chatbox */}
+      <div className="flex flex-1">
+        {/* Sidebar - fixed width */}
+        <div className="w-[300px] h-full">
+          <Sidebar />
+        </div>
+
+        {/* ChatBox - fills remaining space and matches sidebar height */}
+        <div className="flex-1 h-full">
+          <ChatBox />
+        </div>
+      </div>
+    </div>
     </>
-  )
+  );
 };
 
 export default Home;
