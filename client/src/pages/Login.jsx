@@ -13,11 +13,11 @@ const Login = () => {
      e.preventDefault();
     try {
       const res = await axiosInstance.post('/user/login', { email, password });
-      const { id, name, email: userEmail } = res.data.user;
+      const { id, username, email: userEmail } = res.data.user;
 
       // Store user in localStorage
       localStorage.setItem('userId', id);
-      localStorage.setItem('username', name);
+      localStorage.setItem('username',username);
       localStorage.setItem('email', userEmail);
  
       toast.success('Login successful!');
