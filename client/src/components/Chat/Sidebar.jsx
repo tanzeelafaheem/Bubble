@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import { CiSearch } from "react-icons/ci";
-import userIcon from '../../assets/userIcon.png'
+import userIcon from '../../assets/profilePics/userIcon.png'
 
 const Sidebar = () => {
   const id = localStorage.getItem("userId");

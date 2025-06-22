@@ -143,8 +143,22 @@ const getFriends = async (req, res) => {
   }
 };
 
+const updateProfilePic = async (req, res) => {
+  const { userId } = req.params;
+  const { profilePic } = req.body;
+
+  try {
+    const user = await userModel.findById(userId);
+    user.profilePic = profilePic;
+    await user.save();
+    res.status(200).json({ success: true, msg: "Profile picture updated!" });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
 
 
 
 export {addUser,loginUser,searchUser,sendFriendRequest,getUser,
-        acceptFriendRequest,getFriendRequests,getFriends};
+        acceptFriendRequest,getFriendRequests,getFriends,updateProfilePic};
