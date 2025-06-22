@@ -1,34 +1,27 @@
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../api/axiosInstance';
-import Navbar from '../components/Shared/Navbar';
+import Navbar from '../components/Others/Navbar';
 import Sidebar from '../components/Chat/Sidebar';
 import ChatBox from '../components/Chat/ChatBox';
+import Profile from '../components/Others/Profile';
 
 const Home = () => {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axiosInstance.get('/')
-      .then(res => setMessage(res.data.message))
-      .catch(err => console.log(err));
-  }, []);
+  const [activeSection, setActiveSection] = useState("chat");
 
   return (
     <>
      <div className="flex flex-col h-screen">
-      {/* Navbar */}
-      <Navbar />
 
-      {/* Main section with sidebar and chatbox */}
+      <Navbar onSectionChange={setActiveSection} />
+
       <div className="flex flex-1">
-        {/* Sidebar - fixed width */}
         <div className="w-[300px] h-full">
           <Sidebar />
         </div>
 
-        {/* ChatBox - fills remaining space and matches sidebar height */}
         <div className="flex-1 h-full">
-          <ChatBox />
+           {activeSection === "chat" && <ChatBox />}
+          {activeSection === "profile" && <Profile />}
         </div>
       </div>
     </div>

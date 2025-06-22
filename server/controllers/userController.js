@@ -77,10 +77,20 @@ const searchUser = async (req, res) => {
   }
 };
 
+const getUser=async(req,res)=>{
+  try {
+    const user=await userModel.findById(req.params.userId);
+    res.status(200).json({success:true,user:user})
+  } catch (error) {
+    res.status(500).json({success:false,msg:error.message})
+  }
+}
+
 const sendFriendRequest = async (req, res) => {
   const { fromUserId, toUserId } = req.body;
   try {
     const toUser = await userModel.findById(toUserId);
+    // Avoid duplicate requests
     if (!toUser.friendRequests.includes(fromUserId)) {
       toUser.friendRequests.push(fromUserId);
       await toUser.save();
@@ -90,6 +100,7 @@ const sendFriendRequest = async (req, res) => {
     res.status(500).json({ success: false, msg: err.message });
   }
 };
+
 
 const acceptFriendRequest = async (req, res) => {
   const { fromUserId, toUserId } = req.body;
@@ -113,12 +124,15 @@ const acceptFriendRequest = async (req, res) => {
 
 const getFriendRequests = async (req, res) => {
   try {
-    const user = await userModel.findById(req.params.userId).populate("friendRequests", "username profilePic");
+    const user = await userModel
+      .findById(req.params.userId)
+      .populate("friendRequests", "username profilePic");
     res.status(200).json({ success: true, friendRequests: user.friendRequests });
   } catch (err) {
     res.status(500).json({ success: false, msg: err.message });
   }
 };
+
 
 const getFriends = async (req, res) => {
   try {
@@ -132,5 +146,5 @@ const getFriends = async (req, res) => {
 
 
 
-export {addUser,loginUser,searchUser,sendFriendRequest,
+export {addUser,loginUser,searchUser,sendFriendRequest,getUser,
         acceptFriendRequest,getFriendRequests,getFriends};

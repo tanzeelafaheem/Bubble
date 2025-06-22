@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import { CiSearch } from "react-icons/ci";
+import userIcon from '../../assets/userIcon.png'
 
 const Sidebar = () => {
   const id = localStorage.getItem("userId");
@@ -22,17 +23,6 @@ const Sidebar = () => {
     }
   };
 
-  // Fetch friend requests
-  const getRequests = async () => {
-    try {
-      const response = await axiosInstance.get(`/user/get-requests/${id}`);
-      setRequests(response.data.friendRequests);
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    }
-  };
-
   // Accept Requests
   const handleAccept = async (requestId) => {
     try {
@@ -42,7 +32,7 @@ const Sidebar = () => {
       });
       toast.success("Friend request accepted!");
       getFriends();
-      getRequests();
+      fetchRequests();
     } catch (error) {
       console.error(error);
       toast.error("Failed to accept request");
@@ -79,9 +69,15 @@ const Sidebar = () => {
   useEffect(() => {
     if (id) {
       getFriends();
-      getRequests();
     }
+    const fetchRequests = async () => {
+    const id = localStorage.getItem("userId");
+    const res = await axiosInstance.get(`/user/get-requests/${id}`);
+    setRequests(res.data.friendRequests); // These are users who sent you requests
+  };
+  fetchRequests();
   }, [id]);
+  
 
   useEffect(() => {
     const delaySearch = setTimeout(() => {
@@ -151,7 +147,7 @@ const Sidebar = () => {
     >
       <div className="flex items-center gap-3">
         <img
-          src={user.profilePic || "/default-avatar.png"}
+          src={user.profilePic || userIcon}
           alt={user.username}
           className="w-10 h-10 rounded-full object-cover"
         />
@@ -182,7 +178,7 @@ const Sidebar = () => {
                   className="flex items-center gap-4 px-4 py-3 hover:bg-gray-100 cursor-pointer"
                 >
                   <img
-                    src={friend.profilePic || "/default-avatar.png"}
+                    src={friend.profilePic || userIcon}
                     alt={friend.username}
                     className="w-10 h-10 rounded-full object-cover"
                   />
@@ -209,7 +205,7 @@ const Sidebar = () => {
                 >
                   <div className="flex items-center gap-3">
                     <img
-                      src={item.profilePic || "/default-avatar.png"}
+                      src={item.profilePic || userIcon}
                       alt={item.username}
                       className="w-10 h-10 rounded-full object-cover"
                     />

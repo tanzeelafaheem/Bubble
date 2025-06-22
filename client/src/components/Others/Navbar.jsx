@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({onSectionChange}) => {
   const navigate=useNavigate();
   const logOut=async()=>{
     localStorage.clear();
@@ -14,8 +14,8 @@ const Navbar = () => {
         <div className="text-2xl font-bold">🫧 Bubble</div>
       </div>
       <div className="flex items-center gap-8">
-        <a className="text-sm font-medium" href="#">Home</a>
-        <a className="text-sm font-medium" href="#">Profile</a>
+        <a className="text-sm font-medium cursor-pointer" onClick={() => onSectionChange("chat")}>Home</a>
+        <a className="text-sm font-medium cursor-pointer" onClick={() => onSectionChange("profile")}>Profile</a>
         <a className="text-sm font-medium cursor-pointer" onClick={logOut}>Logout</a>
         <a className="text-sm font-medium" href="#">Settings</a>
         <div
