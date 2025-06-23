@@ -5,7 +5,7 @@ import http from 'http';
 import connectDb from './config/mongodb.js';
 import userRouter from './routes/userRoute.js'
 import messageRouter from './routes/messageRoute.js';
-import {socketHandler} from './utilities/socket.js'
+import {socketHandler} from './utils/socket.js'
 import { Server } from 'socket.io';
 
 dotenv.config();
@@ -18,14 +18,19 @@ connectDb();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*', 
-    methods: ['GET', 'POST']
-  }
-})
+    origin: "http://localhost:5173",
+    credentials: true, 
+  },
+});
 socketHandler(io);
 
 // Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use('/api/user',userRouter)
@@ -35,6 +40,6 @@ app.get('/api/', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`✅ Server running at Port: ${PORT}`);
 });

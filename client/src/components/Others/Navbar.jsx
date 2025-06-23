@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance"; 
 import { toast } from "react-toastify"; 
+import userIcon from '../../assets/profilePics/userIcon.png'
 
 const Navbar = ({ onSectionChange }) => {
   const [user, setUser] = useState(null);
@@ -42,7 +43,7 @@ const Navbar = ({ onSectionChange }) => {
         <div
           className="bg-center bg-no-repeat bg-cover rounded-full w-10 h-10"
           style={{
-            backgroundImage: `url(${user?.profilePic || "/default-avatar.png"})`
+            backgroundImage: `url(${user?.profilePic ||userIcon})`
           }}
         />
       </div>

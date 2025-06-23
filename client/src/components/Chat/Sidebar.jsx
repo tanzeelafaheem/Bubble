@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { CiSearch } from "react-icons/ci";
 import userIcon from '../../assets/profilePics/userIcon.png'
 
-const Sidebar = () => {
+const Sidebar = ({ onSelectFriend }) => {
   const id = localStorage.getItem("userId");
   const [friends, setFriends] = useState([]);
   const [requests, setRequests] = useState([]);
@@ -176,6 +176,7 @@ const Sidebar = () => {
                 <div
                   key={index}
                   className="flex items-center gap-4 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => onSelectFriend(friend)}
                 >
                   <img
                     src={friend.profilePic || userIcon}
