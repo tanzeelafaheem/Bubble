@@ -15,14 +15,8 @@ const PORT = process.env.PORT || 5000;
 
 connectDb();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://bubble-fi5b.onrender.com"
-];
-
-// Middlewares
 app.use(cors({
-  origin: allowedOrigins,
+  origin: true, 
   credentials: true,
 }));
 app.use(express.json());
@@ -38,7 +32,7 @@ app.get('/api/', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: true, 
     credentials: true,
   },
 });
