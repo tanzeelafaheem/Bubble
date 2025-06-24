@@ -63,7 +63,7 @@ const Profile = () => {
       <h2 className="text-3xl font-bold mb-6 border-b-4 border-[#218e6c] inline-block pb-1">Profile</h2>
 
       {/* Profile Header */}
-      <div className="flex items-center gap-6 mb-4 p-4 bg-green-300 rounded-md shadow-md">
+      <div className="flex items-center gap-6 mb-4 p-4 bg-[#218e6c] rounded-md shadow-md text-white">
         <img
           src={user.profilePic || userIcon}
           alt="Profile"
@@ -71,7 +71,7 @@ const Profile = () => {
         />
         <div>
           <h3 className="text-2xl font-bold">{user.username}</h3>
-          <p className="text-sm text-green-800 mt-1">
+          <p className="text-sm text-white-800 mt-1">
             Joined on: {new Date(user.createdAt).toLocaleDateString()}
           </p>
         </div>

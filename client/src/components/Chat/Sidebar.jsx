@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import { CiSearch } from "react-icons/ci";
-import userIcon from '../../assets/profilePics/userIcon.png'
+import userIcon from "../../assets/profilePics/userIcon.png";
 
 const Sidebar = ({ onSelectFriend }) => {
   const id = localStorage.getItem("userId");
@@ -32,7 +32,6 @@ const Sidebar = ({ onSelectFriend }) => {
       });
       toast.success("Friend request accepted!");
       getFriends();
-      fetchRequests();
     } catch (error) {
       console.error(error);
       toast.error("Failed to accept request");
@@ -71,13 +70,12 @@ const Sidebar = ({ onSelectFriend }) => {
       getFriends();
     }
     const fetchRequests = async () => {
-    const id = localStorage.getItem("userId");
-    const res = await axiosInstance.get(`/user/get-requests/${id}`);
-    setRequests(res.data.friendRequests); // These are users who sent you requests
-  };
-  fetchRequests();
+      const id = localStorage.getItem("userId");
+      const res = await axiosInstance.get(`/user/get-requests/${id}`);
+      setRequests(res.data.friendRequests);
+    };
+    fetchRequests();
   }, [id]);
-  
 
   useEffect(() => {
     const delaySearch = setTimeout(() => {
@@ -95,15 +93,15 @@ const Sidebar = ({ onSelectFriend }) => {
     <div className="w-72 bg-white h-full border-r border-gray-200 flex flex-col">
       {/* Search bar */}
       <div className="p-4">
-        <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-md">
+        <div className="flex items-center gap-2 bg-[#d3f6e4] px-3 py-2 rounded-md">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="Search"
-            className="flex-1 bg-transparent outline-none text-sm"
+            className="flex-1 outline-none text-sm"
           />
-          <CiSearch size={20} className="text-gray-600" />
+          <CiSearch size={20} className="text-gray-800" />
         </div>
       </div>
 
@@ -112,7 +110,7 @@ const Sidebar = ({ onSelectFriend }) => {
         <button
           className={`flex-1 py-3 text-center font-semibold ${
             activeTab === "friends"
-              ? "text-black border-b-2 border-black"
+              ? "text-[#186d52] border-b-2 border-[#186d52] "
               : "text-gray-400"
           }`}
           onClick={() => setActiveTab("friends")}
@@ -122,7 +120,7 @@ const Sidebar = ({ onSelectFriend }) => {
         <button
           className={`flex-1 py-3 text-center font-semibold ${
             activeTab === "notifications"
-              ? "text-black border-b-2 border-black"
+              ? "text-[#186d52] border-b-2 border-[#186d52] "
               : "text-gray-400"
           }`}
           onClick={() => setActiveTab("notifications")}
@@ -137,37 +135,36 @@ const Sidebar = ({ onSelectFriend }) => {
         {search.trim() && searchResults.length > 0 ? (
           <div>
             {searchResults.map((user) => {
-  const isSelf = user._id === id;
-  const isFriend = friends.some((f) => f._id === user._id);
+              const isSelf = user._id === id;
+              const isFriend = friends.some((f) => f._id === user._id);
 
-  return (
-    <div
-      key={user._id}
-      className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-gray-100"
-    >
-      <div className="flex items-center gap-3">
-        <img
-          src={user.profilePic || userIcon}
-          alt={user.username}
-          className="w-10 h-10 rounded-full object-cover"
-        />
-        <p className="text-sm font-semibold text-black">
-          {user.username}
-        </p>
-      </div>
+              return (
+                <div
+                  key={user._id}
+                  className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-green-100"
+                >
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={user.profilePic || userIcon}
+                      alt={user.username}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <p className="text-sm font-semibold text-black">
+                      {user.username}
+                    </p>
+                  </div>
 
-      {!isSelf && !isFriend && (
-        <button
-          onClick={() => sendFriendRequest(user._id)}
-          className="text-sm px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        >
-          Add
-        </button>
-      )}
-    </div>
-  );
-})}
-
+                  {!isSelf && !isFriend && (
+                    <button
+                      onClick={() => sendFriendRequest(user._id)}
+                      className="text-sm px-3 py-1 bg-[#218e6c] text-white rounded-md  hover:bg-green-300 hover:text-black transition"
+                    >
+                      Add
+                    </button>
+                  )}
+                </div>
+              );
+            })}
           </div>
         ) : activeTab === "friends" ? (
           <div>
@@ -175,7 +172,7 @@ const Sidebar = ({ onSelectFriend }) => {
               friends.map((friend, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                  className="flex items-center gap-4 px-4 py-3 hover:bg-green-100 cursor-pointer"
                   onClick={() => onSelectFriend(friend)}
                 >
                   <img
@@ -202,7 +199,7 @@ const Sidebar = ({ onSelectFriend }) => {
               requests.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-gray-100"
+                  className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-green-100"
                 >
                   <div className="flex items-center gap-3">
                     <img
@@ -216,7 +213,7 @@ const Sidebar = ({ onSelectFriend }) => {
                   </div>
                   <button
                     onClick={() => handleAccept(item._id)}
-                    className="text-sm px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                    className="text-sm px-3 py-1 bg-[#218e6c] text-white rounded-md hover:bg-green-300 hover:text-black transition"
                   >
                     Accept
                   </button>

@@ -3,6 +3,8 @@ import axios from 'axios'
 import {Link, useNavigate} from "react-router-dom";
 import {toast} from 'react-toastify'
 import axiosInstance from '../../src/api/axiosInstance'
+import logo from '../assets/logo2.png'
+import { FaCircle } from "react-icons/fa";
 
 const Login = () => {
   const [email,setEmail]=useState('');
@@ -32,17 +34,18 @@ const Login = () => {
       {/* Left Panel */}
       <div className="w-full md:w-1/2 bg-[#c1e6d3] flex flex-col justify-center items-center px-10 py-16">
         <h1 className="text-5xl font-extrabold text-green-900 mb-4">
-          Bubble 🫧
+          <img src={logo} alt="Bubble 🫧" />
         </h1>
-        <p className="text-green-900 text-lg text-center max-w-md">
-          Connect with friends and family instantly. Share moments, chat, and
-          stay in touch with Bubble.
+        <p className="text-green-900 text-lg text-center max-w-md flex items-center justify-center gap-2">
+          <FaCircle className="text-sm" /> Talk
+          <FaCircle className="text-sm" /> Share
+          <FaCircle className="text-sm" /> Smile...
         </p>
       </div>
 
       {/* Right Panel (Login Form) */}
       <div className="w-full md:w-1/2 flex justify-center items-center px-6 py-16 bg-white">
-        <form className="w-full max-w-sm space-y-5">
+        <form className="w-full max-w-sm space-y-5 shadow-lg p-8">
           <h2 className="text-3xl font-bold text-green-900 text-center mb-6">
             Login
           </h2>

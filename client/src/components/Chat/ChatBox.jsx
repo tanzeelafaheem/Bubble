@@ -44,12 +44,6 @@ const ChatBox = ({ selectedFriend }) => {
 
     socket.emit("send-msg", messageData);
 
-    try {
-      await axiosInstance.post("/message/send-message", messageData);
-    } catch (err) {
-      console.error("DB save error:", err);
-    }
-
     setMessages((prev) => [...prev, { ...messageData }]);
     setNewMsg("");
   };
@@ -57,16 +51,16 @@ const ChatBox = ({ selectedFriend }) => {
   if (!selectedFriend) return <div className="p-6">Select a friend to chat</div>;
 
   return (
-    <div className="flex flex-col justify-between flex-1 bg-white rounded-xl p-6 h-full">
+<div className="flex flex-col bg-white rounded-xl p-4 h-[90vh]">
       {/* Header */}
-      <div className="pb-4 border-b border-gray-200">
+      <div className="pb-3 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-gray-800">
           Chat with {selectedFriend.username}
         </h2>
       </div>
 
       {/* Chat Messages */}
-      <div className="flex flex-col gap-4 py-4 overflow-y-auto flex-1">
+   <div className="flex-1 overflow-y-auto flex flex-col gap-3 pr-2">
         {messages.map((msg, index) => (
           <div
             key={index}
@@ -83,7 +77,7 @@ const ChatBox = ({ selectedFriend }) => {
             <div
               className={`px-4 py-2 rounded-xl max-w-xs ${
                 msg.sender === userId
-                  ? "bg-blue-500 text-white"
+                  ? "bg-[#218e6c] text-white"
                   : "bg-gray-100 text-gray-800"
               }`}
             >
@@ -104,7 +98,7 @@ const ChatBox = ({ selectedFriend }) => {
         />
         <button
           onClick={handleSend}
-          className="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600 transition"
+          className="bg-[#218e6c] text-white px-4 py-2 rounded-xl hover:bg-green-300 hover:text-black transition"
         >
           Send
         </button>
