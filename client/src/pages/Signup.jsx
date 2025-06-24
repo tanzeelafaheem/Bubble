@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosInstance from "../api/axiosInstance";
-import logo from '../assets/logo2.png'
+import logo2 from '../assets/logo2.png'
 import { FaCircle } from "react-icons/fa";
 
 const Signup = () => {
@@ -35,7 +35,7 @@ const Signup = () => {
      {/* Left Panel */}
       <div className="w-full md:w-1/2 bg-[#c1e6d3] flex flex-col justify-center items-center px-10 py-16">
         <h1 className="text-5xl font-extrabold text-green-900 mb-4">
-          <img src={logo} alt="Bubble 🫧" />
+          <img src={logo2} alt="Bubble 🫧" />
         </h1>
        <p className="text-green-900 text-lg text-center max-w-md flex items-center justify-center gap-2">
   <FaCircle className="text-sm" /> Talk
