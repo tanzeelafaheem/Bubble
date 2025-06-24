@@ -3,7 +3,6 @@ import axios from 'axios'
 import {Link, useNavigate} from "react-router-dom";
 import {toast} from 'react-toastify'
 import axiosInstance from '../../src/api/axiosInstance'
-import bubble from '../assets/bubble.png'
 import { FaCircle } from "react-icons/fa";
 
 const Login = () => {
@@ -34,7 +33,7 @@ const Login = () => {
       {/* Left Panel */}
       <div className="w-full md:w-1/2 bg-[#c1e6d3] flex flex-col justify-center items-center px-10 py-16">
         <h1 className="text-5xl font-extrabold text-green-900 mb-4">
-          <img src={bubble} alt="Bubble 🫧" />
+          <img src="/bubble.png" alt="Bubble 🫧" />
         </h1>
         <p className="text-green-900 text-lg text-center max-w-md flex items-center justify-center gap-2">
           <FaCircle className="text-sm" /> Talk

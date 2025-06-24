@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import userIcon from '../../assets/profilePics/userIcon.png';
-import logo from '../../assets/logo.png';
 import { IoIosChatboxes } from "react-icons/io";
 import { ImProfile } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -40,7 +39,7 @@ const Navbar = ({ onSectionChange }) => {
       
       {/* Logo */}
       <div className="cursor-pointer flex items-center" onClick={() => onSectionChange("chat")}>
-        <img src={logo} alt="Bubble Logo" className="w-28 sm:w-32 md:w-40 object-contain" />
+        <img src="/logo.png" alt="Bubble Logo" className="w-28 sm:w-32 md:w-40 object-contain" />
       </div>
 
       {/* Nav Actions */}
