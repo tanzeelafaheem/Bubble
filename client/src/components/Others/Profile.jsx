@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../api/axiosInstance';
 import { toast } from 'react-toastify';
-import userIcon from '../../assets/profilePics/userIcon.png';
-import profile1 from '../../assets/profilePics/profile1.png';
-import profile2 from '../../assets/profilePics/profile2.png';
-import profile3 from '../../assets/profilePics/profile3.png';
-import profile4 from '../../assets/profilePics/profile4.png';
-import profile5 from '../../assets/profilePics/profile5.png';
-import profile6 from '../../assets/profilePics/profile6.png';
-import profile7 from '../../assets/profilePics/profile7.png';
-import profile8 from '../../assets/profilePics/profile8.png';
-import profile9 from '../../assets/profilePics/profile9.png';
-import profile10 from '../../assets/profilePics/profile10.png';
+
+const userIcon = "/profilePics/userIcon.png";
 
 const profileOptions = [
-  profile1, profile2, profile3, profile4, profile5,
-  profile6, profile7, profile8, profile9, profile10
+  "/profilePics/profile1.png",
+  "/profilePics/profile2.png",
+  "/profilePics/profile3.png",
+  "/profilePics/profile4.png",
+  "/profilePics/profile5.png",
+  "/profilePics/profile6.png",
+  "/profilePics/profile7.png",
+  "/profilePics/profile8.png",
+  "/profilePics/profile9.png",
+  "/profilePics/profile10.png",
 ];
+
 
 const Profile = () => {
   const id = localStorage.getItem('userId');

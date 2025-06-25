@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import socket from "../../utils/socket";
 import axiosInstance from "../../api/axiosInstance";
-import userIcon from '../../assets/profilePics/userIcon.png'
+
+const userIcon = "/profilePics/userIcon.png";
+
 
 const ChatBox = ({ selectedFriend }) => {
   const [messages, setMessages] = useState([]);
