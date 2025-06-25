@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
-import userIcon from '../../assets/profilePics/userIcon.png';
 import { IoIosChatboxes } from "react-icons/io";
 import { ImProfile } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
+
+const userIcon = "/profilePics/userIcon.png";
 
 const Navbar = ({ onSectionChange }) => {
   const [user, setUser] = useState(null);
