@@ -1,6 +1,5 @@
 # Bubble Welcome Page
-
-<img width="1903" height="913" alt="Screenshot 2025-06-24 191009" src="https://github.com/user-attachments/assets/c47efefa-d168-40d6-9c49-6dde98c7ff8d" />
+<img width="1903" height="913" alt="Welcome" src="https://github.com/user-attachments/assets/aa9d4a48-1abf-413e-b7cb-9deef303b86d" />
 
 # SignUp
 
