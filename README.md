@@ -1,4 +1,4 @@
-# Bubble Welcome Page
+# Bubble: Welcome Page
 <img width="1903" height="913" alt="Welcome" src="https://github.com/user-attachments/assets/aa9d4a48-1abf-413e-b7cb-9deef303b86d" />
 
 # SignUp
