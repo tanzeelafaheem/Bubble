@@ -16,8 +16,9 @@ const PORT = process.env.PORT || 5000;
 connectDb();
 
 app.use(cors({
-  origin: "*",  
-  credentials: false, 
+  origin: 'https://bubble-ll72.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
